@@ -7,7 +7,7 @@ import { reservas } from '../models/reservas.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PDFentrada = async (usuarioReal, encuentro, reservaId) => {
+const PDFentrada = async (usuario, encuentro, reservaId) => {
     return new Promise((resolve, reject) => {
         try {
             const nombreArchivo = `Entrada-${reservaId}.pdf`;
@@ -86,12 +86,6 @@ const descargarReserva = async (req, res) => {
         console.log(error);
         res.redirect('/encuentros');
     }
-    if (!factura) {
-        return res.status(404).render('404');
-    }
-    res.render('/facturaEncuentro', {
-        factura: factura
-    });
 };
 
 export {

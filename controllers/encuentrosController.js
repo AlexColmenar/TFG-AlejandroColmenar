@@ -27,6 +27,13 @@ const paginaDetallesEncuentros = async (req, res) => {
 
     try {
         const resultado = await encuentros.findOne({ where: { slug: slug } });
+
+        if (!resultado) {
+            return res.status(404).render('404', {
+                pagina: 'Página No Encontrada'
+            });
+        }
+
         let apuntado = false;
         if (res.locals.usuario && resultado) {
             const reservaExistente = await reservas.findOne({
@@ -39,22 +46,16 @@ const paginaDetallesEncuentros = async (req, res) => {
                 apuntado = true;
             }
         }
+
         res.render('encuentroQuedada', {
             pagina: 'Información de la quedada',
             encuentro: resultado,
             apuntado
         });
+
     } catch (error) {
         console.log(error);
     }
-
-    const encuentro = await encuentros.findOne({ where: { slug: slug } });
-    if (!encuentro) {
-        return res.status(404).render('404');
-    }
-    res.render('/', {
-        encuentro: encuentro
-    });
 };
 
 const guardarReserva = async (req, res) => {
@@ -63,7 +64,12 @@ const guardarReserva = async (req, res) => {
 
     try {
         const encuentro = await encuentros.findByPk(id);
-        if (!encuentro) return res.redirect('/encuentros');
+
+        if (!encuentro) {
+            return res.status(404).render('404', {
+                pagina: 'Evento no encontrado'
+            });
+        }
 
         const nuevaReserva = await reservas.create({
             usuario_id: usuarioId,
@@ -72,9 +78,6 @@ const guardarReserva = async (req, res) => {
         });
 
         const usuarioReal = await usuarios.findByPk(usuarioId, { raw: true });
-
-        console.log("DEBUG - Email recuperado de la DB:", usuarioReal.email);
-
         const rutaPdf = await PDFentrada(usuarioReal, encuentro, nuevaReserva.id);
 
         await emailReserva({
@@ -89,20 +92,15 @@ const guardarReserva = async (req, res) => {
             where: { id: encuentro.id }
         });
 
-        res.render('graciasEncuentro', {
-            pagina: '¡Inscripción Confirmada!'
+        return res.render('graciasEncuentro', {
+            pagina: 'Inscripción Confirmada',
+            idReserva: nuevaReserva.id
         });
 
     } catch (error) {
         console.log("Error al guardar la reserva: ", error);
+        res.redirect('/encuentros');
     }
-    const encuentro = await encuentros.findOne({ where: { slug: slug } });
-    if (!encuentro) {
-        return res.status(404).render('404');
-    }
-    res.render('/', {
-        encuentro: encuentro
-    });
 }
 
 
