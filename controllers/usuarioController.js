@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import { emailRegistro } from './emailController.js';
 import { Usuario, Pedido, Reserva, Encuentro, DetallesPedido, Producto } from '../models/relaciones.js';
+import {usuarios} from "../models/usuarios.js";
 
 moment.locale('es');
 const generarId = () => Math.random().toString(32).substring(2) + Date.now().toString(32);
