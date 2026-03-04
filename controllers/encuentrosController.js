@@ -48,7 +48,7 @@ const paginaDetallesEncuentros = async (req, res) => {
         console.log(error);
     }
 
-    const encuentro = await Encuentros.findOne({ where: { slug: req.params.slug } });
+    const encuentro = await encuentros.findOne({ where: { slug: slug } });
     if (!encuentro) {
         return res.status(404).render('404');
     }
@@ -96,7 +96,7 @@ const guardarReserva = async (req, res) => {
     } catch (error) {
         console.log("Error al guardar la reserva: ", error);
     }
-    const encuentro = await Encuentros.findOne({ where: { slug: req.params.slug } });
+    const encuentro = await encuentros.findOne({ where: { slug: slug } });
     if (!encuentro) {
         return res.status(404).render('404');
     }
