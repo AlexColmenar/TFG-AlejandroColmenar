@@ -1,0 +1,60 @@
+extends ./fijo/index
+
+block contenido
+    include ./fijo/header
+    .container
+        .row.justify-content-center.mt-5.mb-5
+            .card.shadow-lg.col-md-12.bg-white.border-0.rounded-4
+                p.fw-bold.text-center.mb-4.mt-3 Bienvenido, #{usuario.nombre}
+                p.text-muted.text-center Aquí puedes gestionar tus compras y descargar tus facturas.
+                            if pedidos.length > 0
+                                h4.text-center.mt-5.fw-bold Mis Productos Comprados
+                                table.table.table-hover.align-middle.mt-4
+                                    thead.table-light
+                                        tr
+                                            th.text-uppercase.text-muted NºPedido
+                                            th.text-uppercase.text-muted Precio
+                                            th.text-uppercase.text-muted Estado
+                                            th.text-uppercase.text-muted Factura
+                                            th.text-uppercase.text-muted Producto
+                                    tbody
+                                        each pedido in pedidos
+                                            tr
+                                                td
+                                                    strong #{pedido.id}
+                                                td
+                                                    strong #{pedido.total} €
+                                                td
+                                                    span.badge.bg-success PAGADO
+                                                td
+                                                    a.btn.btn-outline-secondary(href="/facturas/Factura-" + pedido.id + ".pdf" target="_blank") Descargar Factura
+                                                td
+                                                    img(src="/img/productos/" + pedido.detalles[0].producto.imagen style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;")
+
+                            if encuentros.length > 0
+                                h4.text-center.mt-5.fw-bold Mis Encuentros Reservados
+                                table.table.table-hover.align-middle.mt-4
+                                    thead.table-light
+                                        tr
+                                            th.text-uppercase.text-muted.small ID Reserva
+                                            th.text-uppercase.text-muted.small Ciudad
+                                            th.text-uppercase.text-muted.small Lugar / Espacio
+                                            th.text-uppercase.text-muted.small Fecha y Hora
+                                            th.text-uppercase.text-muted.small Entrada
+                                            th.text-uppercase.text-muted.small Imagen
+                                    tbody
+                                        each reserva in encuentros
+                                            tr
+                                                td
+                                                    strong ##{reserva.id}
+                                                td
+                                                    strong #{reserva.encuentro.ciudad}
+                                                td
+                                                    strong #{reserva.encuentro.espacio}
+                                                td
+                                                    span.text-muted #{moment(reserva.encuentro.tiempo).format('LLL')}
+                                                td
+                                                    a.btn.btn-outline-secondary(href="/entrada/" + reserva.id target="_blank") Descargar Entrada
+                                                td
+                                                    img(src="/img/encuentros/" + reserva.encuentro.imagen style="width: 70px; height: 50px; object-fit: cover; border-radius: 6px; shadow-sm")
+    include ./fijo/footer

@@ -1,15 +1,30 @@
-footer.footer.align-items-center.text-white.py-5
+footer.footer.text-white.py-4.mt-auto
     .container
-        .row.justify-content-center
-            .col-md-10.col-lg-8.text-center
-                .row.justify-content-center.g-3
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-sm.px-4.p-3(href="/quienesSomos") Quienes Somos
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-sm.px-4.p-3(href="/encuentros") Encuentros
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-sm.px-4.p-3(href="/experiencias") Experiencias
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-sm.px-4.p-3(href="/productos") Tienda
-                    h4 Gracias por visitar nuestra web
-                    p Juntos por un mundo mejor y ayudarnos entre todos
+        .row.align-items-center.gy-4
+
+            .col-md-4.text-center.text-md-start
+                .d-flex.align-items-center.justify-content-center.justify-content-md-start.gap-2.mb-2
+                    img(src="/img/portadaSin.png" alt="Logo" style="height: 35px; filter: brightness(0) invert(1);")
+                    span.fw-bold.text-uppercase(style="font-size: 0.9rem;") Mentes Insólitas
+                p.small.opacity-75.m-0(style="font-size: 0.8rem; line-height: 1.2;")
+                    | Potenciando habilidades sin límites.
+
+            .col-md-4
+                nav.nav.justify-content-center.gap-3.gap-lg-4
+                    a.text-white.text-decoration-none.small.opacity-75(href="/nosotros" style="transition: opacity 0.3s") Quiénes Somos
+                    a.text-white.text-decoration-none.small.opacity-75(href="/encuentros" style="transition: opacity 0.3s") Encuentros
+                    a.text-white.text-decoration-none.small.opacity-75(href="/experiencias" style="transition: opacity 0.3s") Experiencias
+                    a.text-white.text-decoration-none.small.opacity-75(href="/productos" style="transition: opacity 0.3s") Tienda
+
+            .col-md-4.text-center.text-md-end
+                a.text-white.text-decoration-none.small.d-block.mb-1(href="mailto:asociacionmentesinsolitas@gmail.com")
+                    i.fas.fa-envelope.me-2
+                    | asociacionmentesinsolitas@gmail.com
+                p.small.opacity-75.m-0
+                    i.fas.fa-map-marker-alt.me-2
+                    | Madrid, España
+
+        // Línea final Copyright
+        hr.my-3.opacity-25
+        .text-center
+            p.m-0.small.opacity-50(style="font-size: 0.7rem;") &copy; 2026 Mentes Insólitas. Todos los derechos reservados.

@@ -1,11 +1,13 @@
-.row.productos
+.row.productos.texto
     each producto in productos
         .col-md-6.col-lg-4.mb-5
-            .card.shadow.border-light.text-bg-light.h-100
-                img.card-img-top(src=`/img/productos/${producto.imagen}`)
-                .card-body
+            .card.shadow-sm.border.rounded-4.text-bg-light.h-100
+                img.card-img-top.border.rounded-top-4(src=`/img/productos/${producto.imagen}`)
+                .card-body.p-3.d-flex.flex-column
                     .blockquote
-                    h4.text-center.fw-bold #{producto.nombre}
-                    p.text-center #{producto.precio} €
-                    p.text-center #{producto.descripcion}
-                a(href=`/productos/${producto.slug}`, class="btn btn-primary btn-block") Ver Producto
+                    h4.fw-bold #{producto.nombre}
+                    .mb-3
+                        span.badge.rounded-pill.bg-primary-subtle.text-primary.px-3.py-2.fw-bold #{producto.precio} €
+                    p.text-muted #{producto.descripcion}
+                    button.btn.w-100.mt-auto.text-white(style="background-color: #1a8f79; border-radius: 0.5rem;") Ver detalles
+                a.stretched-link(href=`/productos/${producto.slug}`)

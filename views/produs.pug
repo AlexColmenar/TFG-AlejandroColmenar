@@ -3,24 +3,33 @@ extends ./fijo/index
 block contenido
     include ./fijo/header
     main.container.mt-5.texto.p-5
-        .row.bg-white.border.rounded-3.shadow-sm.overflow-hidden
+        .row.bg-white.border-0.rounded-4.shadow-lg.overflow-hidden.mb-5
 
-            .col-12.col-md-6.p-0
-                img(src=`/img/productos/${resultado.imagen}`, alt=`${resultado.nombre}`, class="img-fluid w-100 h-100", style="object-fit: cover; min-height: 400px;")
+            .col-12.col-lg-6.p-0
+                img(src=`/img/productos/${producto.imagen}`, alt=`${producto.nombre}`, class="img-fluid w-100 h-100 object-fit-cover", style="min-height: 400px;")
 
-            .p-4.p-lg-5.d-flex.flex-column.justify-content-center
-                a.text-decoration-none.mb-2(href="/productos") ← Volver a los productos
+            .col-12.col-lg-6.p-4.p-lg-5.d-flex.flex-column.justify-content-center
 
-                h1.mb-3 #{resultado.nombre}
+                a.text-decoration-none.text-muted.small.text-uppercase.fw-semibold.mb-3(href="/productos") Volver a los productos
+
+                h1.display-6.fw-bold.mb-2.text-dark #{producto.nombre}
 
                 .d-flex.align-items-center.mb-4
-                    span.badge.bg-primary.fs-4.px-3 #{resultado.precio} €
+                    span.fs-2.fw-bolder(style="color: #198754;") #{producto.precio} €
 
-                hr.mb-4
+                hr.border-secondary.opacity-25.mb-4
 
-                h6.text-muted.text-uppercase.fw-bold Detalles del producto
-                p.mb-5 #{resultado.descripcion}
+                h6.text-muted.text-uppercase.fw-bold.small Detalles del producto
+                p.text-secondary.mb-5.lh-lg #{producto.descripcion}
 
-                .d-grid
-                    button.btn.btn-dark.btn-lg(type="button") Añadir al carrito
+                form(action=`/carrito/agregar/${producto.id}` method="POST")
+                    div.d-flex.flex-wrap.align-items-end.gap-3
+                        div
+                            label.form-label.small.text-muted.fw-bold(for="cantidad") Cantidad
+                            input.form-control.form-control-lg.text-center(type="number" name="cantidad" id="cantidad" value="1" min="1" max="10" style="width: 90px; border-radius: 0.5rem;")
+
+                        button.btn.btn-lg.text-white.flex-grow-1(type="submit" style="background-color: #1a8f79; border-radius: 0.5rem;")
+                            i.fas.fa-ticket-alt.me-2
+                            | Guardar en el carrito
+
     include ./fijo/footer

@@ -1,0 +1,16 @@
+extends ./fijo/index
+
+block contenido
+    include ./fijo/header
+
+    .container.my-5.py-5
+        .row.justify-content-center
+            .col-md-8.text-center
+                h1.display-4 Gracias por su reserva
+                p.lead Mentes Insólitas está encantado de tenerle.
+
+                a.btn.btn-outline-primary.mt-3(href="/entrada")
+                    i.bi.bi-file-earmark-pdf-fill.me-2
+                    | Descargar Entrada
+
+    include ./fijo/footer

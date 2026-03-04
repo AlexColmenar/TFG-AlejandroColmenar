@@ -1,0 +1,80 @@
+extends ./fijo/index
+
+block contenido
+    include ./fijo/header
+    .container.mt-5.shadow-lg.col-md-12.bg-white.border-0.rounded-4.texto
+        h2.fw-bold.text-center.mb-4.mt-3 Tu carrito
+        p.text-muted.text-center Selecciona la cantidad y productos que necesitas.
+        .table-responsive
+            table.table.table-hover.align-middle.mt-4
+                thead.table-light
+                    tr
+                        th.text-uppercase.text-muted(scope='col' style="width: 50%") Producto
+                        th.text-uppercase.text-muted(scope='col' style="width: 15%") Precio
+                        th.text-uppercase.text-muted(scope='col' style="width: 15%") Cantidad
+                        th.text-uppercase.text-muted(scope='col' style="width: 15%") Total
+                        th.text-uppercase.text-muted(scope='col' style="width: 5%")
+                tbody
+                    if pedido && pedido.detalles && pedido.detalles.length > 0
+                        each item in pedido.detalles
+                            tr
+                                td.align-middle
+                                    div.d-flex.align-items-center
+                                        span.fw-bold #{item.producto.nombre}
+
+                                td.align-middle #{item.precio_unitario} €
+
+                                td.align-middle
+                                    input.input-cantidad(
+                                        type="number"
+                                        value=item.cantidad
+                                        min="1"
+                                        data-id=item.id
+                                        style="width: 60px; margin: 0 auto;"
+                                    )
+
+                                td.align-middle.fw-bold #{item.subtotal} €
+
+                                td.align-middle
+                                    a.btn.btn-sm.btn-outline-danger(href="/carrito/borrar/" + item.id) ×
+                    else
+                        tr
+                            td.text-center.p-5(colspan="5")
+                                p.lead.mb-3 Tu carrito está vacío
+                                a.btn.btn-primary(href="/productos") Ir a la Tienda
+
+        if pedido && pedido.detalles && pedido.detalles.length > 0
+            .row.mt-4
+                .col-md-4.offset-md-8
+                    .d-flex.justify-content-between.align-items-center.mb-3
+                        span.h4.mb-0 Total:
+                        span.h4.mb-0.fw-bold #{pedido.total} €
+                    form(action="/carrito/finalizar", method="POST")
+                        button.btn.btn-dark.w-100.py-2(type="submit") Finalizar Compra
+                    a.d-block.text-center.mt-2.mb-4.text-decoration-none.text-muted(href="/productos") Seguir comprando
+
+    include ./fijo/footer
+
+    script.
+        document.querySelectorAll('.input-cantidad').forEach(input => {
+            input.addEventListener('change', async (e) => {
+                const id = e.target.dataset.id;
+                const nuevaCantidad = e.target.value;
+
+                if (nuevaCantidad < 1) return;
+
+                try {
+                    const respuesta = await fetch(`/carrito/actualizar/${id}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ cantidad: nuevaCantidad })
+                    });
+
+                    if (respuesta.ok) {
+                        window.location.reload();
+                    }
+                } catch (error) {
+                    console.error('Error al actualizar el carrito:', error);
+                }
+            });
+        });

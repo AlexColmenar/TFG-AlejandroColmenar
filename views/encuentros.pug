@@ -2,19 +2,16 @@ extends ./fijo/index
 
 block contenido
     include ./fijo/header
-    .container.p-5.texto
-        h2.text-center Nuestros sitios de quedadas:
-        p.text-center.mb-5 Aquí puedes consultar los horarios, ciudades y sitio exacto donde realizaremos cada actividad y que se realizará en ella, así mismo. sus objetivos y metas que queremos conseguir para que ustedes puedan avanzar, mas adelante iremos completando mas ciudades, eventos y objetivos juntos.
-            .row.encuentros
-                each encuentro in encuentros
-                    .col-12.col-md-6.col-lg-4.mb-5
-                        .card.shadow.border-light.text-bg-light.h-100
-                            img.card-img-top(src=`/img/encuentros/${encuentro.imagen}`)
-                            .card-body
-                                .blockquote
-                                    h4.text-center.fw-bold #{encuentro.ciudad}
-                                    p.text-center #{encuentro.espacio}
-                                    p.text-center.badge.bg-secondary.d-block= moment(encuentro.tiempo).format('LLL')
-                                p #{encuentro.actividades}
+
+    .container.py-5.texto
+        .row.justify-content-center.text-center
+            .col-lg-8.col-md-10
+                h2.fw-bold.text-dark.mb-2 Nuestros sitios de quedadas
+
+                hr.w-25.mx-auto.mb-4.border-primary.border-3.opacity-75
+
+                p.lead.text-secondary.mb-5 Aquí puedes consultar los horarios, ciudades y el sitio exacto donde realizaremos cada actividad y qué se realizará en ella; asimismo, sus objetivos y metas que queremos conseguir para que ustedes puedan avanzar. Más adelante iremos completando más ciudades, eventos y objetivos juntos.
+
+        include ./fijo/layout_encuentros
 
     include ./fijo/footer

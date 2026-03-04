@@ -17,11 +17,20 @@ export const encuentros = db.define("encuentros",{
             type: Sequelize.DATE
         },
         actividades:{
+            type: Sequelize.FLOAT
+        },
+        latitud: {
+            type: Sequelize.FLOAT
+        },
+        longitud: {
             type: Sequelize.STRING
         },
         imagen:{
             type: Sequelize.STRING
-        }
+        },
+        slug:{
+            type: Sequelize.STRING
+        },
 
     },
     {

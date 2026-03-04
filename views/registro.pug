@@ -1,0 +1,31 @@
+extends ./fijo/index
+
+block contenido
+    include ./fijo/header
+    link(href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet')
+    link(href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet')
+    .container-form
+        .welcome-back
+            p ¿Ya tienes una cuenta por favor inicia sesion aqui
+            a(href="/login") Iniciar Sesion
+
+        form.formulario(action="/registro" method="POST")
+            h2 Crear una cuenta
+            .iconos
+                .border-icon: i.bx.bxl-instagram
+                .border-icon: i.bx.bxl-linkedin
+                .border-icon: i.bx.bxl-facebook-circle
+
+            p Crear una cuenta gratis
+
+            input(type="text" name="nombre" placeholder="Nombre" required)
+            input(type="email" name="email" placeholder="Email" required)
+            input(type="password" name="password" placeholder="Contraseña" required)
+            input(type="submit" value="Registrarse")
+
+            if errores
+                each error in errores
+                    div.alert.alert-danger= error.mensaje
+
+
+    include ./fijo/footer

@@ -1,0 +1,34 @@
+extends ./fijo/index
+
+block contenido
+    include ./fijo/header
+    link(href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet')
+    link(href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet')
+
+    .container-form
+        .welcome-back
+            .message
+                h2 Bienvenido de nuevo
+                p Si aún no tienes cuenta por favor regístrese aquí
+                a(href="/registro") Registrarse
+
+        form.formulario(action="/login" method="POST")
+            h2.create-account Iniciar Sesión
+            if alertas
+                each alerta in alertas
+                    div.alert.alert-success.text-center.w-100(role="alert" style="font-size: 0.9rem;")= alerta.msg
+            if errores
+                each error in errores
+                    div.alert.alert-danger.text-center.w-100(role="alert" style="font-size: 0.9rem;")= error.mensaje
+            .iconos
+                .border-icon: i.bx.bxl-instagram
+                .border-icon: i.bx.bxl-linkedin
+                .border-icon: i.bx.bxl-facebook-circle
+
+            p.cuenta-gratis ¿Aún no tienes una cuenta?
+
+            input(type='email' name="email" placeholder='Email')
+            input(type='password' name="password" placeholder='Contraseña')
+            input(type='submit' value='Iniciar Sesión')
+
+    include ./fijo/footer

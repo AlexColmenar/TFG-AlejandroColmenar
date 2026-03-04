@@ -1,11 +1,14 @@
-.row.encuentros
-            each encuentro in encuentros
-                .col-md-6.col-lg-4.mb-5
-                        .card.shadow.border-light.text-bg-light.h-100
-                            img.card-img-top(src=`/img/encuentros/${encuentro.imagen}`)
-                            .card-body
-                                .blockquote
-                                    h4.text-center.fw-bold #{encuentro.ciudad}
-                                    p.text-center #{encuentro.espacio}
-                                    p.text-center.badge.bg-secondary.d-block= moment(encuentro.tiempo).format('LLL')
-                                    p #{encuentro.actividades}
+.row.encuentros.texto
+    each encuentro in encuentros
+        .col-md-6.col-lg-4.mb-5
+            .card.shadow-sm.border.rounded-4.text-bg-light.h-100
+                img.card-img-top.border.rounded-top-4(src=`/img/encuentros/${encuentro.imagen}`)
+                .card-body.p-3.d-flex.flex-column
+                    .blockquote
+                    h4.fw-bold #{encuentro.ciudad}
+                    p.text-uppercase.fs-6.fw-bold.text-muted #{encuentro.espacio}
+                    .mb-3
+                        span.bg-primary-subtle.text-primary.rounded-pill.badge.px-3.py-2.fw-bold= moment(encuentro.tiempo).format('LLL')
+                    p.text-muted #{encuentro.actividades}
+                    button.btn.w-100.mt-auto.text-white(style="background-color: #1a8f79; border-radius: 0.5rem;") Ver detalles
+                a.stretched-link(href=`/encuentros/${encuentro.slug}`)

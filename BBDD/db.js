@@ -12,6 +12,12 @@ const db = new Sequelize(process.env.CONEXION, {
         acquire: 30000,
         idle: 10000
     },
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    }
 });
 
 export default db;

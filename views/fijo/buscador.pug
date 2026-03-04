@@ -1,0 +1,21 @@
+extends ./index
+
+block contenido
+    include ./header
+
+    main.container.mt-5
+        h1.text-center Resultados de la búsqueda para: "#{termino}"
+        section.mt-5
+            h2 Productos
+            if productos.length > 0
+                include ./layout_productos
+            else
+                p.text-muted No hemos encontrado productos con ese nombre.
+        section.mt-5
+            h2 Encuentros
+            if encuentros.length > 0
+                include ./layout_encuentros
+            else
+                p.text-muted No hay encuentros programados que coincidan.
+
+    include ./footer

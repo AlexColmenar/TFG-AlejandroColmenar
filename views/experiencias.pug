@@ -3,9 +3,10 @@ extends ./fijo/index
 block contenido
     include ./fijo/header
     .container.mt-5.texto
-        h1.text-center.mt-5 EXPERIENCIAS
-        blockquote.text-center.mb-5
-            p Lee sobre nuestros clientes y sus experiencias
+        h2.fw-bold.text-dark.mb-2.text-center Experiencias
+            hr.w-25.mx-auto.mb-4.border-primary.border-3.opacity-75
+            blockquote.text-center.mb-5
+            p.lead.text-secondary.mb-5 Cuentanos tus sensaciones y experiencias sobre lo que has experimentado con nosotros
         include ./fijo/layout_experiencias
 
 
@@ -17,18 +18,19 @@ block contenido
                         .alert.col.alert-danger.text-center=error.mensaje
 
             .row.justify-content-center.mb-5
-                .col-md-8
-                    form(action="/experiencias" method="POST")
-                        .form-group.mb-3
-                            label(for="nombre") Nombre
-                            input#nombre(type="text", placeholder="Tu nombre", name="nombre", class="form-control", value=nombre)
-                        .form-group.mb-3
-                            label(for="correo") Correo Electrónico
-                            input#correo(type="text", placeholder="Tu correo electrónico", name="correo", class="form-control", value=correo)
-                        .form-group.mb-3
-                            label(for="mensaje") Mensaje
-                            textarea#situaciones(class="form-control", name="situaciones", placeholder="Tu Mensaje", rows=3)= situaciones
+                .card.shadow-lg.bg-white.border-0.rounded-4.p-4
+                    .col-md-12
+                        form.formuxp(action="/experiencias" method="POST")
+                            .form-group.mb-4
+                                label.fw-bold(for="nombre") Nombre
+                                input#nombre(type="text", placeholder="Tu nombre", name="nombre", class="form-control", value=nombre)
+                            .form-group.mb-4
+                                label.fw-bold(for="correo") Correo Electrónico
+                                input#correo(type="text", placeholder="Tu correo electrónico", name="correo", class="form-control", value=correo)
+                            .form-group.mb-4
+                                label.fw-bold(for="mensaje") Mensaje
+                                textarea#situaciones(class="form-control", name="situaciones", placeholder="Tu Mensaje", rows=3)= situaciones
 
-                        input.btn.btn-outline-dark(type="submit")
+                            input.btn.btn-outline-dark(type="submit")
 
     include ./fijo/footer

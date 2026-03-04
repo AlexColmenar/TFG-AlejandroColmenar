@@ -1,0 +1,24 @@
+h3.mb-4 Catálogo de Productos
+table.table.table-striped
+    thead
+        tr
+            th ID
+            th Nombre
+            th Precio
+            th Stock
+            th Imagen
+            th Acciones
+    tbody
+        each producto in productos
+            tr
+                td #{producto.id}
+                td #{producto.nombre}
+                td #{producto.precio} €
+                td #{producto.stock}
+                td: img(src="/img/productos/" + producto.imagen style="width: 40px; border-radius: 4px; object-fit: cover;")
+                td
+                    a.btn.btn-sm.btn-primary.me-2(href="/administrador/editarProducto/" + producto.id title="Editar")
+                        i.bi.bi-pencil-square
+                    form.d-inline(action="/administrador/borrarProducto/" + producto.id method="POST")
+                        button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('¿Seguro que quieres borrar este producto de la tienda?');" title="Borrar")
+                            i.bi.bi-trash

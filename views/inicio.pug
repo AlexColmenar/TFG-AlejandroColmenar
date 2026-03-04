@@ -2,38 +2,55 @@ extends ./fijo/index
 
 block contenido
     include ./fijo/header
-    .container.mt-5.py-5.texto.text-center
-        .row.bg-white.border.rounded-3.shadow-sm.overflow-hidden
-            h2.col-md-6.mb-2.color.col-12 NUESTRA HISTORIA
-            .row.mb-5
-                .col-md-6.p-4.col-12
-                    h5 Nuestra historia comenzó con un propósito claro: transformar la incertidumbre en esperanza. Al observar los desafíos que enfrentan las familias con diagnósticos de TDAH, autismo y otras neurodiversidades, decidimos crear un refugio digital de apoyo y orientación. Lo que empezó como una iniciativa pequeña entre especialistas y padres, ha evolucionado hasta convertirse en una comunidad vibrante dedicada a la inclusión. Creemos que cada niño posee un potencial único que merece ser descubierto. Hoy, seguimos trabajando para brindar herramientas prácticas, derribar barreras y recordarles a las familias que no están solas en este camino. Juntos, construimos un mundo donde la diferencia es nuestra mayor fortaleza
-                .col-md-6.p-0.col-12
-                    img(src="/img/index.jpg", class="img-fluid w-30 h-60", style="object-fit: cover; min-height: 400px;")
+    .container.my-5.py-4.texto
+        .row.align-items-center.g-5
+            .col-md-6
+                #miCarrusel.carousel.slide(data-bs-ride="carousel")
+                    .carousel-inner.border.rounded-4
+                        .carousel-item.active
+                            img.d-block.w-100(src="/img/index.jpg", alt="Primera foto")
+                        .carousel-item
+                            img.d-block.w-100(src="/img/index2.jpg", alt="Segunda foto")
+                        .carousel-item
+                            img.d-block.w-100(src="/img/index3.jpg", alt="Tercera foto")
+                        .carousel-item
+                            img.d-block.w-100(src="/img/index4.jpg", alt="Cuarta foto")
+                        .carousel-item
+                            img.d-block.w-100(src="/img/index5.jpg", alt="Quinta foto")
 
-    .container.mt-5.py-5.text-xl-center
-        .row.texto
+                    button.carousel-control-prev(type="button" data-bs-target="#miCarrusel" data-bs-slide="prev")
+                        span.carousel-control-prev-icon(aria-hidden="true")
+
+                    button.carousel-control-next(type="button" data-bs-target="#miCarrusel" data-bs-slide="next")
+                        span.carousel-control-next-icon(aria-hidden="true")
+            .col-md-6
+                h2.fw-bold.mb-4.display-6 Nuestra Historia
+                p.text-secondary.lh-lg Nuestra historia comenzó con un propósito claro: transformar la incertidumbre en esperanza. Al observar los desafíos que enfrentan las familias con diagnósticos de TDAH, autismo y otras neurodiversidades, decidimos crear un refugio digital de apoyo y orientación. Lo que empezó como una iniciativa pequeña entre especialistas y padres, ha evolucionado hasta convertirse en una comunidad vibrante dedicada a la inclusión.
+                p.fw-bold.text-dark.mt-4 "Juntos, construimos un mundo donde la diferencia es nuestra mayor fortaleza."
+
+    .container.mt-3.py-3.texto
+        .row.text-xl-center
             h2.mb-5.color Junto a nosotros podrás encontrar el camino al avance
             .col-md-4.col-12
-                img(src="/img/1.png", class="img-fluid rounded mb-3 fotosPie")
+                img.img-fluid.rounded-4.mb-3(src="/img/1.png", class="fotosPie")
                 h2.mb-4 La Conexion
                 p Sabemos que el diagnóstico a menudo trae consigo un sentimiento de aislamiento. Por eso, nuestro pilar fundamental es tejer una red de seguridad emocional. Aquí, familias y profesionales construimos puentes de empatía real, creando un espacio donde las experiencias compartidas nos recuerdan que ningún desafío se enfrenta en soledad.
             .col-md-4.col-12
-                img(src="/img/2.png", class="img-fluid rounded mb-3 fotosPie")
+                img.img-fluid.rounded-4.mb-3(src="/img/2.png", class=" fotosPie")
                 h2.mb-4 El Aprendizaje
                 p Más allá de la teoría, nos enfocamos en lo práctico. Transformamos la complejidad de la neurodiversidad en herramientas tangibles para el día a día. Desde estrategias de comunicación hasta recursos de regulación sensorial, nuestro objetivo es empoderar a las personas con métodos accesibles que fomenten su autonomía y autoconfianza.
             .col-md-4.col-12
-                img(src="/img/3.png", class="img-fluid rounded mb-3 fotosPie")
+                img.img-fluid.rounded-4.mb-3(src="/img/3.png", class="fotosPie")
                 h2.mb-4 El Crecimiento
                 p Creemos firmemente que no hay una forma "correcta" de desarrollarse. Nuestra visión no es corregir, sino nutrir el potencial único que cada niño ya posee. Celebramos sus trayectorias individuales, enfocándonos en sus fortalezas para cultivar un futuro donde puedan florecer siendo auténticamente ellos mismos.
 
-        .container.texto.mt-5.py-5
-            h3.color Algunos de nuestros sitios para quedar y realizar diferentes actividades:
+        .container.mt-3.py-3.texto
+            h3.p-5.color.text-center Algunos de nuestros sitios para quedar y realizar diferentes actividades:
             include ./fijo/layout_encuentros
-        .container.texto.mt-5.py-5
-            h3.color Algunas de nuestros productos:
+        .container.mt-3.py-3.texto
+            h3.p-5.color.text-center Algunos de nuestros productos:
             include ./fijo/layout_productos
-        .container.texto.mt-5.py-5
-            h3.color Algunas de las experiencias de nuestros clientes:
+        .container.mt-3.py-3.texto
+            h3.p-5.color.text-center Algunas de las experiencias de nuestros clientes:
             include ./fijo/layout_experiencias
     include ./fijo/footer

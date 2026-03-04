@@ -2,35 +2,45 @@ extends ./fijo/index
 
 block contenido
     include ./fijo/header
-    .container
-        .row.texto.color.mt-5.py-5
+    .container.pt-5.texto
+        .row.justify-content-center.text-center
+            .col-lg-8.col-md-10
+                h2.fw-bold.text-dark.mb-2 Sobre nosotros
+                hr.w-25.mx-auto.mb-4.border-primary.border-3.opacity-75
+    .container.texto
+        .row.color.mt-5
             .col-md-6.col-12
                 h1 Nuestro objetivo y compromiso
-                p En Mentes Insólitas, creemos que no hay una sola forma de ver, sentir o procesar el mundo. Nuestra plataforma nació de la necesidad de tender puentes entre el diagnóstico y la vida cotidiana de las familias con niños con TDAH, autismo y otras neurodiversidades. Sabemos que el camino puede ser complejo, pero también estamos convencidos de que la diferencia es, en realidad, un potencial esperando ser comprendido.
+                p En Mentes Insólitas, creemos que no hay una sola forma de ver, sentir o procesar el mundo.
+                p Nuestra plataforma nació de la necesidad de tender puentes entre el diagnóstico y la vida cotidiana de las familias con niños con TDAH, autismo y otras neurodiversidades.
+                p Sabemos que el camino puede ser complejo, pero también estamos convencidos de que la diferencia es, en realidad, un potencial esperando ser comprendido.
                 h2 Nuestro Propósito
-                p  Nuestra misión es transformar la incertidumbre en herramientas prácticas. No nos limitamos a informar; buscamos empoderar a padres y educadores para que se conviertan en el mejor apoyo de sus hijos. A través de recursos especializados, estrategias de gestión sensorial y una comunidad sólida, trabajamos para derribar las barreras que impiden que estas personas brillen con luz propia.
+                p  Nuestra misión es transformar la incertidumbre en herramientas prácticas.
+                p No nos limitamos a informar; buscamos empoderar a padres y educadores para que se conviertan en el mejor apoyo de sus hijos.
+                p A través de recursos especializados, estrategias de gestión sensorial y una comunidad sólida, trabajamos para derribar las barreras que impiden que estas personas brillen con luz propia.
                 h2 ¿En qué creemos?
                 p Neurodiversidad: El cerebro humano es diverso por naturaleza.
                 p No buscamos "arreglar" a nadie, sino adaptar el entorno para que cada persona prospere.
                 p Inclusión Real: La verdadera inclusión comienza con la comprensión profunda de las necesidades individuales.
                 p Acompañamiento: Nadie debería navegar este proceso en soledad. Mentes Insólitas es ese espacio seguro donde encontrar respuestas y humanidad.
-                p Estamos aquí para recordarte que la mente de tu ser querido es un territorio fascinante y que, con el apoyo adecuado, sus capacidades no tienen límites. Bienvenidos a la comunidad donde lo diferente es extraordinario.
+                p Estamos aquí para recordarte que la mente de tu ser querido es un territorio fascinante y que, con el apoyo adecuado, sus capacidades no tienen límites.
+                p Bienvenidos a la comunidad donde lo diferente es extraordinario.
             .col-md-6.col-12
-                img(src="/img/sobreNosotros.jpeg" class="img-fluid rounded")
+                img.img-fluid.rounded-4(src="/img/sobreNosotros.jpeg" class="img-fluid rounded")
 
-    .container.mt-5.py-5.text-xl-center
-        .row.color.texto
+    .container.mt-5.py-5.text-xl-center.texto
+        .row.color
             h2.mb-5 Junto a nosotros podrás encontrar el camino al avance
             .col-md-4.col-12
-                img(src="/img/1.png", class="img-fluid rounded mb-3 fotosPie")
+                img.img-fluid.rounded-4(src="/img/1.png", class="mb-3 fotosPie")
                 h2.mb-4 La Conexion
                 p Sabemos que el diagnóstico a menudo trae consigo un sentimiento de aislamiento. Por eso, nuestro pilar fundamental es tejer una red de seguridad emocional. Aquí, familias y profesionales construimos puentes de empatía real, creando un espacio donde las experiencias compartidas nos recuerdan que ningún desafío se enfrenta en soledad.
             .col-md-4.col-12
-                img(src="/img/2.png", class="img-fluid rounded mb-3 fotosPie")
+                img.img-fluid.rounded-4(src="/img/2.png", class="mb-3 fotosPie")
                 h2.mb-4 El Aprendizaje
                 p Más allá de la teoría, nos enfocamos en lo práctico. Transformamos la complejidad de la neurodiversidad en herramientas tangibles para el día a día. Desde estrategias de comunicación hasta recursos de regulación sensorial, nuestro objetivo es empoderar a las personas con métodos accesibles que fomenten su autonomía y autoconfianza.
             .col-md-4.col-12
-                img(src="/img/3.png", class="img-fluid rounded mb-3 fotosPie")
+                img.img-fluid.rounded-4(src="/img/3.png", class="mb-3 fotosPie")
                 h2.mb-4 El Crecimiento
                 p Creemos firmemente que no hay una forma "correcta" de desarrollarse. Nuestra visión no es corregir, sino nutrir el potencial único que cada niño ya posee. Celebramos sus trayectorias individuales, enfocándonos en sus fortalezas para cultivar un futuro donde puedan florecer siendo auténticamente ellos mismos.
     include ./fijo/footer

@@ -1,16 +1,51 @@
-header.header.align-items-center.text-white.py-5
+header.header.navbar.navbar-expand-lg.navbar-dark.align-items-center
     .container
-        .row.justify-content-center
-            .col-md-10.col-lg-8.text-center
-                a(href="/")
-                    img(src="/img/portadaSin.png" class="mb-4" style="width: 200px;" alt="Logo")
-                h1.h5.mb-5 Especialistas en personas con diferentes facultades. Diseñamos herramientas para que tu potencial no tenga límites.
-                .row.justify-content-center.g-3
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-lg.w-100.py-3(href="/quienesSomos") Quienes Somos
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-lg.w-100.py-3(href="/encuentros") Encuentros
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-lg.w-100.py-3(href="/experiencias") Experiencias
-                    .col-12.col-md-6.col-lg-3
-                        a.btn.btn-outline-light.btn-lg.w-100.py-3(href="/productos") Tienda
+        a.navbar-brand(href="/")
+            img(src="/img/portadaSin.png" class="logo")
+
+        button.navbar-toggler.border-0(type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal")
+            span.navbar-toggler-icon
+
+        #menuPrincipal.collapse.navbar-collapse.justify-content-between.mt-3.mt-lg-0
+            ul.navbar-nav.mx-auto.mb-2.mb-lg-0.gap-4
+                li.nav-item
+                    a.nav-link.text-white.text-uppercase.fw-bold(href="/nosotros") Quiénes Somos
+                li.nav-item
+                    a.nav-link.text-white.text-uppercase.fw-bold(href="/encuentros") Encuentros
+                li.nav-item
+                    a.nav-link.text-white.text-uppercase.fw-bold(href="/experiencias") Experiencias
+                li.nav-item
+                    a.nav-link.text-white.text-uppercase.fw-bold(href="/productos") Tienda
+            .d-flex.align-items-center.gap-4
+
+                form.search-box(action="/buscador" method="GET")
+                    button.btn-search-icon(type="submit")
+                        i.fas.fa-search.text-white
+                    input.input-minimal(type="text" name="termino" placeholder="Buscar..." autocomplete="off")
+
+                .vr.bg-white(style="height: 70px;")
+
+                if usuario
+                    div.d-flex.flex-column.lh-3
+                        a.text-white.text-decoration-none(href="/logout")
+                            span Cerrar Sesión
+                        span.text-white-50 Bienvenido, #{usuario.nombre}
+                    if usuario.rol === "administrador"
+                        a.ms-3(href="/administrador")
+                            img(src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/key-round.svg" style="filter: invert(1); width: 21px;")
+                    else
+                        a.ms-3(href="/perfil")
+                            img(src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/user.svg" style="filter: invert(1); width: 21px;")
+
+                        a.ms-3(href="/carrito")
+                            img(src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shopping-cart.svg" style="filter: invert(1); width: 21px;")
+
+
+                else
+                    .d-flex.align-items-center.gap-3
+                        a.btn.btn-outline-light.rounded-pill.px-4.fw-bold(href="/registro") Registro
+                        a.ms-3(href="/perfil")
+                            img(src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/user.svg" style="filter: invert(1); width: 21px;")
+                        a.ms-3(href="/carrito")
+                            img(src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shopping-cart.svg" style="filter: invert(1); width: 21px;")
+

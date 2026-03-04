@@ -1,0 +1,22 @@
+extends ./index
+
+block contenido
+    include ./header
+    .container-form
+        .row.justify-content-center.mb-5
+            .card.shadow-lg.bg-white.border-0.rounded-4.p-4
+                .col-md-12
+                    .welcome-back
+                    form.formulario(action='/administrador/editarEncuentro/' + encuentro.id, method="POST", enctype="multipart/form-data")
+                        h2 Editar encuentro
+                        input(type="text" name="Ciudad" value=encuentro.ciudad placeholder="Ciudad" required)
+                        input(type="text" step="0.01" name="Espacio" value=encuentro.espacio placeholder="Espacio" required)
+                        input(type="datetime-local" name="Tiempo" value=fechaFormateada placeholder="Tiempo" required)
+                        input(type="text" name="Actividades" value=encuentro.actividades placeholder="Actividades" required)
+                        input(type="file" class="form-control-file" name="imagenEncuentro" required)
+                        input(type="submit" value="Editar encuentro")
+
+                        if errores
+                            each error in errores
+                                div.alert.alert-danger= error.mensaje
+    include ./footer

@@ -1,0 +1,19 @@
+.container-form
+    .row.justify-content-center.mb-5
+        .card.shadow-lg.bg-white.border-0.rounded-4.p-4
+            .col-md-12
+                .welcome-back
+                form.formulario(action="/encuentros" enctype="multipart/form-data" method="POST")
+                    h2 Añadir encuentro
+                    input(type="text" name="Ciudad" placeholder="Ciudad" required)
+                    input(type="text" step="0.01" name="Espacio" placeholder="Espacio" required)
+                    input(type="datetime-local" name="Tiempo" placeholder="Tiempo" required)
+                    input(type="text" name="Actividades" placeholder="Actividades" required)
+                    input(type="text" name="Latitud" placeholder="00.0000" required)
+                    input(type="text" name="Longitud" placeholder="0.0000" required)
+                    input(type="file" class="form-control-file" name="imagenEncuentro" required)
+                    input(type="submit" value="Añadir encuentro")
+
+                    if errores
+                        each error in errores
+                            div.alert.alert-danger= error.mensaje

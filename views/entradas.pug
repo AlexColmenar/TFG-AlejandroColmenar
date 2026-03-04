@@ -1,0 +1,20 @@
+.container.my-5.border.rounded.shadow-sm.overflow-hidden(style="max-width: 600px;")
+    .header.bg-success.text-white.text-center.py-4
+        h1.h4.mb-0 Pago Confirmado
+
+    .content.p-5.bg-white
+        h2.h5.mb-3 Hola, #{nombre}
+        p Muchas gracias por tu compra. Hemos procesado tu pedido correctamente y ya estamos gestionando el envío de tu producto.
+
+        .box-info.bg-light.p-3.my-4.border-start.border-success.border-4
+            p.mb-1(style="font-size: 18px; color: #333;")
+                strong Pedido:
+                | ##{idPedido}
+            p.mb-0.text-success.fw-bold Estado: Pagado
+
+        p Adjunto a este correo encontrarás un PDF con la factura detallada de tu compra.
+        p Esperamos que disfrutes de tu nuevo producto.
+
+    .footer.bg-light.text-center.py-3.border-top
+        p.mb-1.small.text-muted &copy; Asociación Mentes Insólitas
+        p.mb-0.text-muted(style="font-size: 11px;") Este es un mensaje automático, por favor no respondas a este correo.
