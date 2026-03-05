@@ -5,11 +5,14 @@ import { emailReserva } from './emailController.js';
 import { reservas } from '../models/reservas.js';
 import moment from 'moment';
 import { usuarios } from '../models/usuarios.js';
+import {productos} from "../models/productos.js";
+import {experiencias} from "../models/experiencias.js";
 moment.locale('es');
 
 const paginaEncuentros = async (req, res) => {
     try{
         const encuentro = await encuentros.findAll({
+        order: [["Tiempo", "ASC"]]
         });
         res.render("encuentros", {
             pagina: "Encuentros",

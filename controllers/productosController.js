@@ -8,6 +8,7 @@ moment.locale('es');
 const paginaProductos = async (req, res) => {
     try{
         const producto = await productos.findAll({
+            order: [["Precio", "ASC"]]
         });
         res.render("productos", {
             pagina: "Productos",
