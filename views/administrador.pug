@@ -72,7 +72,7 @@ block contenido
                                                     th Producto
                                             tbody
                                                 each pedido in pedidos
-                                                    if pedido.usuario.email === usuario.email
+                                                    if pedido.usuario && pedido.usuario.email === usuario.email
                                                         tr
                                                             td #{pedido.id}
                                                             td #{pedido.total} €
@@ -99,7 +99,7 @@ block contenido
                                                     th Encuentro
                                             tbody
                                                 each reserva in reservas
-                                                    if reserva.usuario.email === usuario.email
+                                                    if reserva.usuario && reserva.usuario.email === usuario.email
                                                         tr
                                                             td #{reserva.id}
                                                             td #{reserva.ciudad}
