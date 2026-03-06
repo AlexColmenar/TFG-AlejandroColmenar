@@ -2,59 +2,107 @@ extends ./fijo/index
 
 block contenido
     include ./fijo/header
-    .container
-        .row.justify-content-center.mt-5.mb-5
-            .card.shadow-lg.col-md-12.bg-white.border-0.rounded-4
-                p.fw-bold.text-center.mb-4.mt-3 Bienvenido, #{usuario.nombre}
-                p.text-muted.text-center Aquí puedes gestionar tus compras y descargar tus facturas.
-                            if pedidos.length > 0
-                                h4.text-center.mt-5.fw-bold Mis Productos Comprados
-                                table.table.table-hover.align-middle.mt-4
-                                    thead.table-light
-                                        tr
-                                            th.text-uppercase.text-muted NºPedido
-                                            th.text-uppercase.text-muted Precio
-                                            th.text-uppercase.text-muted Estado
-                                            th.text-uppercase.text-muted Factura
-                                            th.text-uppercase.text-muted Producto
-                                    tbody
-                                        each pedido in pedidos
-                                            tr
-                                                td
-                                                    strong #{pedido.id}
-                                                td
-                                                    strong #{pedido.total} €
-                                                td
-                                                    span.badge.bg-success PAGADO
-                                                td
-                                                    a.btn.btn-outline-secondary(href="/facturas/Factura-" + pedido.id + ".pdf" target="_blank") Descargar Factura
-                                                td
-                                                    img(src="/img/productos/" + pedido.detalles[0].producto.imagen style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;")
+    .d-flex(style="min-height: 100vh;")
+        aside.p-4.bg-white.border-end.texto(style="width: 250px;")
 
-                            if encuentros.length > 0
-                                h4.text-center.mt-5.fw-bold Mis Encuentros Reservados
-                                table.table.table-hover.align-middle.mt-4
-                                    thead.table-light
-                                        tr
-                                            th.text-uppercase.text-muted.small ID Reserva
-                                            th.text-uppercase.text-muted.small Ciudad
-                                            th.text-uppercase.text-muted.small Lugar / Espacio
-                                            th.text-uppercase.text-muted.small Fecha y Hora
-                                            th.text-uppercase.text-muted.small Entrada
-                                            th.text-uppercase.text-muted.small Imagen
-                                    tbody
-                                        each reserva in encuentros
-                                            tr
-                                                td
-                                                    strong ##{reserva.id}
-                                                td
-                                                    strong #{reserva.encuentro.ciudad}
-                                                td
-                                                    strong #{reserva.encuentro.espacio}
-                                                td
-                                                    span.text-muted #{moment(reserva.encuentro.tiempo).format('LLL')}
-                                                td
-                                                    a.btn.btn-outline-secondary(href="/entrada/" + reserva.id target="_blank") Descargar Entrada
-                                                td
-                                                    img(src="/img/encuentros/" + reserva.encuentro.imagen style="width: 70px; height: 50px; object-fit: cover; border-radius: 6px; shadow-sm")
+
+            .nav.flex-column.nav-pills(role="tablist")(style="position:sticky; top: 150px;")
+                h5.fw-bold.mb-4.border-bottom.pb-2 Panel de Gestión
+
+                button.nav-link.active.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-inicio" type="button")
+                    i.bi.bi-house-door.me-2
+                    | Mi perfil
+
+                button.nav-link.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-productos" type="button")
+                    i.bi.bi-box-seam.me-2
+                    | Consultar mis compras
+
+                button.nav-link.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-encuentros" type="button")
+                    i.bi.bi-calendar-event.me-2
+                    | Consultar mis encuentros
+
+        main.flex-grow-1.bg-light.p-5.texto
+            .tab-content
+                .tab-pane.fade.show.active#tab-inicio
+                    h2 Bienvenido al Panel
+                    p Selecciona una opción en el menú de la izquierda para añadir lo que considere oportuno.
+                    .container-form
+                        .card.shadow-lg.bg-white.border-0.rounded-4.p-5.mt-5(style="width: 100%; max-width: 550px;")
+                            p.fw-bold.text-center.mb-4.text-uppercase Bienvenido, #{usuario.nombre}
+
+                            form(action="/encuentros" enctype="multipart/form-data" method="POST")
+                                h2.text-center.mb-4.fw-bold Perfil
+
+                                input.form-control.mb-3.w-100(type="email" name="Correo" placeholder="tucorreo@gmail.com" required style="height: 50px;")
+                                input.form-control.mb-3.w-100(type="text" name="Nombre" placeholder="Nombre" required style="height: 50px;")
+                                input.form-control.mb-3.w-100(type="password" name="Contraseña" placeholder="Contraseña" required style="height: 50px;")
+
+                                p.text-muted.text-center.mt-3 Actualiza la información de tu perfil
+                                button.btn.btn-primary.w-100.py-2.mt-2(type="submit") Guardar
+
+                    div.d-flex.flex-column.align-items-center.mt-5
+                        p.text-muted.text-center Ten cuidado, una vez elimines no hay vuelta atras
+                        button.btn.btn-danger Eliminar cuenta
+
+                .tab-pane.fade#tab-productos
+                    .container
+                        .row.justify-content-center.mt-5.mb-5
+                            .card.shadow-lg.col-md-12.bg-white.border-0.rounded-4
+                                p.fw-bold.text-center.mb-4.mt-3.text-uppercase Bienvenido, #{usuario.nombre}
+                                    if pedidos.length > 0
+                                        h4.text-center.mt-5.fw-bold Mis Productos Comprados
+                                        table.table.table-hover.align-middle.mt-4
+                                            thead.table-light
+                                                tr
+                                                    th.text-uppercase.text-muted NºPedido
+                                                    th.text-uppercase.text-muted Precio
+                                                    th.text-uppercase.text-muted Estado
+                                                    th.text-uppercase.text-muted Factura
+                                                    th.text-uppercase.text-muted Producto
+                                            tbody
+                                                each pedido in pedidos
+                                                    tr
+                                                        td
+                                                            strong #{pedido.id}
+                                                        td
+                                                            strong #{pedido.total} €
+                                                        td
+                                                            span.badge.bg-success PAGADO
+                                                        td
+                                                            a.btn.btn-outline-secondary(href="/facturas/Factura-" + pedido.id + ".pdf" target="_blank") Descargar Factura
+                                                        td
+                                                            img(src="/img/productos/" + pedido.detalles[0].producto.imagen style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;")
+
+                .tab-pane.fade#tab-encuentros
+                    .container
+                        .row.justify-content-center.mt-5.mb-5
+                            .card.shadow-lg.col-md-12.bg-white.border-0.rounded-4
+                                p.fw-bold.text-center.mb-4.mt-3.text-uppercase Bienvenido, #{usuario.nombre}
+                                    if encuentros.length > 0
+                                        h4.text-center.mt-5.fw-bold Mis Encuentros Reservados
+                                        table.table.table-hover.align-middle.mt-4
+                                            thead.table-light
+                                                tr
+                                                    th.text-uppercase.text-muted.small ID Reserva
+                                                    th.text-uppercase.text-muted.small Ciudad
+                                                    th.text-uppercase.text-muted.small Lugar / Espacio
+                                                    th.text-uppercase.text-muted.small Fecha y Hora
+                                                    th.text-uppercase.text-muted.small Entrada
+                                                    th.text-uppercase.text-muted.small Imagen
+                                            tbody
+                                                each reserva in encuentros
+                                                    tr
+                                                        td
+                                                            strong ##{reserva.id}
+                                                        td
+                                                            strong #{reserva.encuentro.ciudad}
+                                                        td
+                                                            strong #{reserva.encuentro.espacio}
+                                                        td
+                                                            span.text-muted #{moment(reserva.encuentro.tiempo).format('LLL')}
+                                                        td
+                                                            a.btn.btn-outline-secondary(href="/entrada/" + reserva.id target="_blank") Descargar Entrada
+                                                        td
+                                                            img(src="/img/encuentros/" + reserva.encuentro.imagen style="width: 70px; height: 50px; object-fit: cover; border-radius: 6px; shadow-sm")
+
     include ./fijo/footer
