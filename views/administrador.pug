@@ -3,38 +3,38 @@ extends ./fijo/index
 block contenido
     include ./fijo/header
 
-    .d-flex(style="min-height: 100vh;")
-        aside.p-4.bg-white.border-end.texto(style="width: 250px;")
+    .d-flex.flex-column.flex-md-row(style="min-height: 100vh;")
+        aside.p-3.p-md-4.bg-white.border-bottom.border-md-end.texto(style="flex: 0 0 auto; min-width: 250px;")
 
 
-            .nav.flex-column.nav-pills(role="tablist")(style="position:sticky; top: 150px;")
-                h5.fw-bold.mb-4.border-bottom.pb-2 Panel de Gestión
+            .nav.flex-row.flex-md-column.nav-pills.overflow-auto.flex-nowrap.pb-2.pb-md-0(role="tablist" style="position: sticky; top: 100px; z-index: 10;")
+                h5.fw-bold.mb-4.border-bottom.pb-2.d-none.d-md-block Panel de Gestión
 
-                button.nav-link.active.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-inicio" type="button")
+                button.nav-link.active.text-start.mb-0.mb-md-2.me-2.me-md-0.text-nowrap(data-bs-toggle="pill" data-bs-target="#tab-inicio" type="button")
                     i.bi.bi-house-door.me-2
                     | Resumen
 
-                button.nav-link.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-productos" type="button")
+                button.nav-link.text-start.mb-0.mb-md-2.me-2.me-md-0.text-nowrap(data-bs-toggle="pill" data-bs-target="#tab-productos" type="button")
                     i.bi.bi-box-seam.me-2
                     | Añadir Producto
 
-                button.nav-link.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-encuentros" type="button")
+                button.nav-link.text-start.mb-0.mb-md-2.me-2.me-md-0.text-nowrap(data-bs-toggle="pill" data-bs-target="#tab-encuentros" type="button")
                     i.bi.bi-calendar-event.me-2
                     | Añadir Encuentro
 
-                button.nav-link.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-lista-productos" type="button")
+                button.nav-link.text-start.mb-0.mb-md-2.me-2.me-md-0.text-nowrap(data-bs-toggle="pill" data-bs-target="#tab-lista-productos" type="button")
                     i.bi.bi-list-ul.me-2
                     | Lista Productos
 
-                button.nav-link.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-lista-encuentros" type="button")
+                button.nav-link.text-start.mb-0.mb-md-2.me-2.me-md-0.text-nowrap(data-bs-toggle="pill" data-bs-target="#tab-lista-encuentros" type="button")
                     i.bi.bi-list-ul.me-2
                     | Lista Encuentros
 
-                button.nav-link.text-start.mb-2(data-bs-toggle="pill" data-bs-target="#tab-usuarios" type="button")
+                button.nav-link.text-start.mb-0.mb-md-2.me-2.me-md-0.text-nowrap(data-bs-toggle="pill" data-bs-target="#tab-usuarios" type="button")
                     i.bi.bi-person-circle.me-2
                     | Usuarios y Pedidos
 
-        main.flex-grow-1.bg-light.p-5.texto
+        main.flex-grow-1.bg-light.p-3.p-md-5.texto.overflow-hidden
             .tab-content
 
                 .tab-pane.fade.show.active#tab-inicio
@@ -63,21 +63,22 @@ block contenido
                                         strong #{usuario.nombre} &nbsp; - #{usuario.email}
                                 .accordion-collapse.collapse(id="collapsePedidos" + index data-bs-parent="#acordeonPedidos")
                                     .accordion-body
-                                        table.table.table-striped
-                                            thead
-                                                tr
-                                                    th Nº Pedido
-                                                    th Total
-                                                    th Factura
-                                                    th Producto
-                                            tbody
-                                                each pedido in pedidos
-                                                    if pedido.usuario && pedido.usuario.email === usuario.email
-                                                        tr
-                                                            td #{pedido.id}
-                                                            td #{pedido.total} €
-                                                            td: a.btn.btn-sm.btn-dark(href="/facturas/Factura-" + pedido.id + ".pdf" target="_blank") Ver PDF
-                                                            td: img(src="/img/productos/" + pedido.detalles[0].producto.imagen style="width: 40px; border-radius: 4px;")
+                                        .table-responsive
+                                            table.table.table-striped
+                                                thead
+                                                    tr
+                                                        th Nº Pedido
+                                                        th Total
+                                                        th Factura
+                                                        th Producto
+                                                tbody
+                                                    each pedido in pedidos
+                                                        if pedido.usuario && pedido.usuario.email === usuario.email
+                                                            tr
+                                                                td #{pedido.id}
+                                                                td #{pedido.total} €
+                                                                td: a.btn.btn-sm.btn-dark(href="/facturas/Factura-" + pedido.id + ".pdf" target="_blank") Ver PDF
+                                                                td: img(src="/img/productos/" + pedido.detalles[0].producto.imagen style="width: 40px; border-radius: 4px;")
 
                     h2.mt-5.mb-4 Historial de Encuentros
                     .accordion#acordeonEncuentros
@@ -89,21 +90,22 @@ block contenido
 
                                 .accordion-collapse.collapse(id="collapseEncuentros" + index data-bs-parent="#acordeonEncuentros")
                                     .accordion-body
-                                        table.table.table-striped
-                                            thead
-                                                tr
-                                                    th Nº Reserva
-                                                    th Ciudad
-                                                    th Hora
-                                                    th Entrada
-                                                    th Encuentro
-                                            tbody
-                                                each reserva in reservas
-                                                    if reserva.usuario && reserva.usuario.email === usuario.email
-                                                        tr
-                                                            td #{reserva.id}
-                                                            td #{reserva.ciudad}
-                                                            td #{moment(reserva.encuentro.tiempo).format('LLL')}
-                                                            td: a.btn.btn-sm.btn-dark(href="/entradas/Entrada-" + reserva.id + ".pdf" target="_blank") Ver PDF
-                                                            td: img(src="/img/encuentros/" + reserva.encuentro.imagen style="width: 40px; border-radius: 5px")
+                                        .table-responsive
+                                            table.table.table-striped
+                                                thead
+                                                    tr
+                                                        th Nº Reserva
+                                                        th Ciudad
+                                                        th Hora
+                                                        th Entrada
+                                                        th Encuentro
+                                                tbody
+                                                    each reserva in reservas
+                                                        if reserva.usuario && reserva.usuario.email === usuario.email
+                                                            tr
+                                                                td #{reserva.id}
+                                                                td #{reserva.ciudad}
+                                                                td #{moment(reserva.encuentro.tiempo).format('LLL')}
+                                                                td: a.btn.btn-sm.btn-dark(href="/entradas/Entrada-" + reserva.id + ".pdf" target="_blank") Ver PDF
+                                                                td: img(src="/img/encuentros/" + reserva.encuentro.imagen style="width: 40px; border-radius: 5px")
     include ./fijo/footer

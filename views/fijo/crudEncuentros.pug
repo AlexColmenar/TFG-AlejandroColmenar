@@ -1,24 +1,25 @@
 h3.mb-4 Catálogo de Encuentros
-table.table.table-striped
-    thead
-        tr
-            th ID
-            th Ciudad
-            th Espacio
-            th Hora
-            th Imagen
-            th Acciones
-    tbody
-        each encuentro in encuentros
+.table-responsive
+    table.table.table-striped
+        thead
             tr
-                td #{encuentro.id}
-                td #{encuentro.ciudad}
-                td #{encuentro.espacio}
-                td #{moment(encuentro.tiempo).format('LLL')}
-                td: img(src="/img/encuentros/" + encuentro.imagen style="width: 40px; border-radius: 4px; object-fit: cover;")
-                td
-                    a.btn.btn-sm.btn-primary.me-2(href="/administrador/editarEncuentro/" + encuentro.id title="Editar")
-                        i.bi.bi-pencil-square
-                    form.d-inline(action="/administrador/borrarEncuentro/" + encuentro.id method="POST")
-                        button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('¿Seguro que quieres borrar este encuentro?');" title="Borrar")
-                            i.bi.bi-trash
+                th ID
+                th Ciudad
+                th Espacio
+                th Hora
+                th Imagen
+                th Acciones
+        tbody
+            each encuentro in encuentros
+                tr
+                    td #{encuentro.id}
+                    td #{encuentro.ciudad}
+                    td #{encuentro.espacio}
+                    td #{moment(encuentro.tiempo).format('LLL')}
+                    td: img(src="/img/encuentros/" + encuentro.imagen style="width: 40px; border-radius: 4px; object-fit: cover;")
+                    td
+                        a.btn.btn-sm.btn-primary.me-2(href="/administrador/editarEncuentro/" + encuentro.id title="Editar")
+                            i.bi.bi-pencil-square
+                        form.d-inline(action="/administrador/borrarEncuentro/" + encuentro.id method="POST")
+                            button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('¿Seguro que quieres borrar este encuentro?');" title="Borrar")
+                                i.bi.bi-trash
