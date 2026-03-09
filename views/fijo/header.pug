@@ -19,6 +19,7 @@ header.header.navbar.navbar-expand-lg.navbar-dark.align-items-center
             .d-flex.align-items-center.gap-4
 
                 form.search-box(action="/buscador" method="GET")
+                    //- Envía los datos mediante método GET a la ruta '/buscador' pasándole el término de búsqueda para filtrarlo con el buscadorController
                     button.btn-search-icon(type="submit")
                         i.fas.fa-search.text-white
                     input.input-minimal(type="text" name="termino" placeholder="Buscar..." autocomplete="off")

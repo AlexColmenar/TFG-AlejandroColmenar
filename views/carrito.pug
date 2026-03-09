@@ -50,26 +50,32 @@ block contenido
                         span.h4.mb-0 Total:
                         span.h4.mb-0.fw-bold #{pedido.total} €
                     form(action="/carrito/finalizar", method="POST")
+                        //- Envía los datos mediante método POST a la ruta '/carrito/finalizar' para cerrar el pedido, generar el PDF de la factura y mandar el correo
                         button.btn.btn-dark.w-100.py-2(type="submit") Finalizar Compra
                     a.d-block.text-center.mt-2.mb-4.text-decoration-none.text-muted(href="/productos") Seguir comprando
 
     include ./fijo/footer
 
     script.
+        //- Selecciona todos los inputs de cantidad de la tabla del carrito
         document.querySelectorAll('.input-cantidad').forEach(input => {
+            //- Escucha el evento 'change' (cuando el usuario cambia el número usando las flechitas)
             input.addEventListener('change', async (e) => {
-                const id = e.target.dataset.id;
-                const nuevaCantidad = e.target.value;
+                const id = e.target.dataset.id; // Saca el ID de la línea concreta desde el data-id del HTML
+                const nuevaCantidad = e.target.value; // Obtiene el nuevo valor numérico
 
+                //- Previene que el usuario ponga un número negativo o cero saltándose las reglas
                 if (nuevaCantidad < 1) return;
 
                 try {
+                    //- Realiza una petición AJAX silenciosa (sin recargar la página) hacia nuestro controlador
                     const respuesta = await fetch(`/carrito/actualizar/${id}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ cantidad: nuevaCantidad })
+                        body: JSON.stringify({ cantidad: nuevaCantidad }) // Manda la nueva cantidad en formato JSON
                     });
 
+                    //- Si el controlador devolvió res.json({ ok: true }), forzamos la recarga de la web para pintar el precio total actualizado
                     if (respuesta.ok) {
                         window.location.reload();
                     }

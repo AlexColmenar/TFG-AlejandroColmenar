@@ -28,6 +28,7 @@ block contenido
                             label.form-label.small.text-muted.fw-bold(for="cantidad") Cantidad
                             input.form-control.form-control-lg.text-center(type="number" name="cantidad" id="cantidad" value="1" min="1" max="10" style="width: 90px; border-radius: 0.5rem;")
 
+                        //- Envía los datos mediante método POST a la ruta '/carrito/agregar/:id' para sumarlo al carrito con el valor indicado en el input 'cantidad'
                         button.btn.btn-lg.text-white.flex-grow-1(type="submit" style="background-color: #1a8f79; border-radius: 0.5rem;")
                             i.fas.fa-ticket-alt.me-2
                             | Guardar en el carrito

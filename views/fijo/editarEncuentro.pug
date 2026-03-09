@@ -14,6 +14,7 @@ block contenido
                         input(type="datetime-local" name="Tiempo" value=fechaFormateada placeholder="Tiempo" required)
                         input(type="text" name="Actividades" value=encuentro.actividades placeholder="Actividades" required)
                         input(type="file" class="form-control-file" name="imagenEncuentro" required)
+                        //- Envía los datos mediante método POST a la ruta '/administrador/editarEncuentro/:id' para machacar la información previa de este encuentro con los datos nuevos
                         input(type="submit" value="Editar encuentro")
 
                         if errores

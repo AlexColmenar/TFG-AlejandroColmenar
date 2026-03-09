@@ -21,5 +21,6 @@ h3.mb-4 Catálogo de Encuentros
                         a.btn.btn-sm.btn-primary.me-2(href="/administrador/editarEncuentro/" + encuentro.id title="Editar")
                             i.bi.bi-pencil-square
                         form.d-inline(action="/administrador/borrarEncuentro/" + encuentro.id method="POST")
+                            //- Envía los datos mediante método POST a la ruta '/administrador/borrarEncuentro/:id' para eliminar definitivamente este encuentro de la plataforma
                             button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('¿Seguro que quieres borrar este encuentro?');" title="Borrar")
                                 i.bi.bi-trash

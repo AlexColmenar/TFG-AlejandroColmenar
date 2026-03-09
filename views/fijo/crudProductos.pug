@@ -21,5 +21,6 @@ h3.mb-4 Catálogo de Productos
                         a.btn.btn-sm.btn-primary.me-2(href="/administrador/editarProducto/" + producto.id title="Editar")
                             i.bi.bi-pencil-square
                         form.d-inline(action="/administrador/borrarProducto/" + producto.id method="POST")
+                            //- Envía los datos mediante método POST a la ruta '/administrador/borrarProducto/:id' para eliminar definitivamente el producto del catálogo web
                             button.btn.btn-sm.btn-danger(type="submit" onclick="return confirm('¿Seguro que quieres borrar este producto de la tienda?');" title="Borrar")
                                 i.bi.bi-trash

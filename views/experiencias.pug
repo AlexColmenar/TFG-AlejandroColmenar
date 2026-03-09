@@ -31,6 +31,7 @@ block contenido
                                 label.fw-bold(for="mensaje") Mensaje
                                 textarea#situaciones(class="form-control", name="situaciones", placeholder="Tu Mensaje", rows=3)= situaciones
 
+                            //- Envía los datos mediante método POST a la ruta '/experiencias' para que se guarde el testimonio y aparezca junto a los demás
                             input.btn.btn-outline-dark(type="submit")
 
     include ./fijo/footer
